@@ -38,7 +38,7 @@ $router->group(['prefix' => 'api/v1', 'middleware' => ['auth']], function () use
      */
     $router->group(['prefix' => 'assigment'],function() use($router){
         $router->get('listAll', [AssignmentController::class, 'listAll']);
-        $router->get('getById/{assignment_id}', [AssignmentController::class, 'getAssignmentById']);
+        $router->get('getById', [AssignmentController::class, 'getAssignmentById']);
         $router->post('create', [AssignmentController::class, 'store']);
         $router->put('update', [AssignmentController::class, 'update']);
         $router->delete('delete', [AssignmentController::class, 'delete']);
