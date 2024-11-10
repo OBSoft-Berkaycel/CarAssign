@@ -2,41 +2,70 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Library\Repositories\Interfaces\UserRepositoryInterface;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function __construct(private readonly UserRepositoryInterface $userRepository){}
+
+
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
+        try {
+            $credentials = $request->only('email', 'password');
 
-        if ($token = JWTAuth::attempt($credentials)) {
-            return response()->json(['token' => $token]);
+            if ($token = JWTAuth::attempt($credentials)) {
+                return response()->json(['token' => $token]);
+            }
+
+            return response()->json(['error' => 'Unauthorized'], 401);
+        } catch (\Throwable $th) {
+            Log::error('There is an error occured in login method! Error: '.$th->getMessage());
+            return response()->json([
+                "status" => false,
+                "message" => 'There is an error occured in login method!'
+            ],422);
         }
-
-        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        try {
+            $request->merge(['password' => Hash::make($request->get('password'))]);
 
-        return response()->json(['message' => 'User created successfully'], 201);
+            $this->userRepository->create($request);
+    
+            return response()->json(['message' => 'User created successfully'], 201);
+        } catch (\Throwable $th) {
+            Log::error('There is an error occured in register method! Error: '.$th->getMessage());
+            return response()->json([
+                "status" => false,
+                "message" => 'There is an error occured in register process!'
+            ],422);
+        }
     }
 
     public function logout(Request $request)
     {
-        $token = $request->bearerToken();
+        try {
+            $token = $request->bearerToken();
 
-        JWTAuth::invalidate($token);
+            JWTAuth::invalidate($token);
 
-        return response()->json(['message' => 'Successfully logged out']);
+            return response()->json(['message' => 'Successfully logged out']);
+        } catch (\Throwable $th) {
+            Log::error('There is an error occured in logout method! Error: '.$th->getMessage());
+            return response()->json([
+                "status" => false,
+                "message" => 'There is an error occured in logout process!'
+            ],422);
+        }
     }
 }
 
