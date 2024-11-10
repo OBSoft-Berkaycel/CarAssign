@@ -24,6 +24,7 @@ class UpdateRequest extends FormRequest
     protected function rules(): array
     {
         return [
+            "assignment_id" => "required|integer|exists:assignments,id",
             "user_id" => "required|integer|exists:users,id",
             "vehicle_id" => "required|integer|exists:vehicles,id",
             "duration" => "sometimes|integer|min:1",
@@ -41,6 +42,10 @@ class UpdateRequest extends FormRequest
     protected function messages(): array
     {
         return [
+            'assignment_id.required' => 'The assignment ID is required.',
+            'assignment_id.integer' => 'The assignment ID must be an integer.',
+            'assignment_id.exists' => 'The specified assignment does not exist.',
+
             'user_id.required' => 'The user ID is required.',
             'user_id.integer' => 'The user ID must be an integer.',
             'user_id.exists' => 'The specified user does not exist.',

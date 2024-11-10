@@ -21,34 +21,33 @@ $router->post('login', 'AuthController@login');
 $router->post('register', 'AuthController@register');
 
 $router->group(['prefix' => 'api/v1', 'middleware' => ['auth']], function () use ($router) {
-    
+
     /**
      * Company Routes
      */
     $router->group(['prefix' => 'companies'], function() use($router){
-        $router->get('listAll',[CompanyController::class, 'listAll']);
-        $router->get('listById', [CompanyController::class, 'getById']);
-        $router->post('create', [CompanyController::class, 'store']);
-        // $router->put('update', [CompanyController::class, 'update']);
-        $router->delete('delete',[CompanyController::class, 'delete']);
+        $router->get('listAll', 'CompanyController@listAll');
+        $router->get('listById', 'CompanyController@getById');
+        $router->post('create', 'CompanyController@store');
+        $router->delete('delete', 'CompanyController@delete');
     });
 
     /**
      * Assignment Routes
      */
-    $router->group(['prefix' => 'assigment'],function() use($router){
-        $router->get('listAll', [AssignmentController::class, 'listAll']);
-        $router->get('getById', [AssignmentController::class, 'getAssignmentById']);
-        $router->post('create', [AssignmentController::class, 'store']);
-        $router->put('update', [AssignmentController::class, 'update']);
-        $router->delete('delete', [AssignmentController::class, 'delete']);
+    $router->group(['prefix' => 'assignments'], function() use($router){
+        $router->get('listAll', 'AssignmentController@listAll');
+        $router->get('getById', 'AssignmentController@getAssignmentById');
+        $router->post('create', 'AssignmentController@store');
+        $router->put('update', 'AssignmentController@update');
+        $router->delete('delete', 'AssignmentController@delete');
     });
 
+    /**
+     * Vehicle Routes
+     */
     $router->group(['prefix' => 'vehicles'], function() use ($router){
-        $router->get('listAll', [VehicleController::class, 'listAll']);
-        $router->get('getById/{vehicle_id}', [VehicleController::class, 'getVehicleById']);
-        $router->get('getVehiclesInStock', [VehicleController::class, 'getVehiclesInStock']);
-        $router->get('getByColor', [VehicleController::class, 'getVehiclesByColor']);
-        $router->get('getByHorsePower', [VehicleController::class, 'getVehiclesByHorsePower']);
+        $router->get('listAll', 'VehicleController@listAll');
+        $router->get('getById', 'VehicleController@getVehicleById');
     });
 });

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserRepository implements UserRepositoryInterface
 {
-    public function getById(int $userId): Collection
+    public function getById(int $userId): Collection|User
     {
         return User::find($userId);
     }

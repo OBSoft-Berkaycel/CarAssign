@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Company;
+namespace App\Http\Requests\Vehicles;
 
 use Anik\Form\FormRequest;
 
-class CreateRequest extends FormRequest
+class ListByIdRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,21 @@ class CreateRequest extends FormRequest
     protected function rules(): array
     {
         return [
-            "name" => "required|string|unique:companies,name"
+            "vehicle_id" => "required|integer|exists:vehicles,id",
         ];
     }
 
     /**
-     * Get the custom error messages for the validation rules.
+     * Get the validation messages for the defined rules (update).
      *
      * @return array
      */
-    public function messages(): array
+    protected function messages(): array
     {
         return [
-            'name.required' => 'The name is required.',
-            'name.string' => 'The name field must be a valid string.',
-            'name.unique' => 'The company name has already been taken. Please choose a different one.',
+            'vehicle_id.required' => 'The user ID is required.',
+            'vehicle_id.integer' => 'The user ID must be an integer.',
+            'vehicle_id.exists' => 'The specified user does not exist.',
         ];
     }
 }

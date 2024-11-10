@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Vehicles\ListByIdRequest;
 use App\Library\Repositories\Interfaces\VehicleRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -37,13 +38,13 @@ class VehicleController extends Controller
     /**
      * Get vehicle by ID.
      *
-     * @param int $vehicle_id
+     * @param ListByIdRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function getVehicleById($vehicle_id)
+    public function getVehicleById(ListByIdRequest $request)
     {
         try {
-            $vehicle = $this->vehicleRepository->getById($vehicle_id);
+            $vehicle = $this->vehicleRepository->getById($request->get('vehicle_id'));
             Log::info("Vehicle datas were listed successfully!");
             return response()->json([
                 "status" => true,

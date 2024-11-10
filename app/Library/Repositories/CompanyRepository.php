@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class CompanyRepository implements CompanyRepositoryInterface
 {
-    public function getAll(): Collection
+    public function getAll(): Collection|Company
     {
         return Company::all();
     }
 
-    public function getById(int $companyId): Collection
+    public function getById(int $companyId): Collection|Company
     {
         return Company::find($companyId);
     }

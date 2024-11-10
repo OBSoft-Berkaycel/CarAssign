@@ -107,6 +107,7 @@ $app->register(Illuminate\Database\DatabaseServiceProvider::class);
 
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(App\Providers\RegisterServiceProvider::class);
+$app->register(Illuminate\Database\MigrationServiceProvider::class);
 
 class_alias(Tymon\JWTAuth\Facades\JWTAuth::class, 'JWTAuth');
 

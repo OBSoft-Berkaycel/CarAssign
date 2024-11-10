@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class AssignmentRepository implements AssignmentRepositoryInterface
 {
-    public function getAll(): Collection
+    public function getAll(): Collection|Assignment
     {
-        return Assignment::where('company_id', 1)->get();
+        return Assignment::all();
     }
 
-    public function getById(ListByIdRequest $request): Collection
+    public function getById(ListByIdRequest $request): Collection|Assignment
     {
         return Assignment::find($request->get('assignment_id'));
     }

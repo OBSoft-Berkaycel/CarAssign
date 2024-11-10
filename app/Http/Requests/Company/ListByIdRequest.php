@@ -24,7 +24,7 @@ class ListByIdRequest extends FormRequest
     protected function rules(): array
     {
         return [
-            "company_id" => "required|integer|exists:company,id"
+            "company_id" => "required|integer|exists:companies,id"
         ];
     }
 

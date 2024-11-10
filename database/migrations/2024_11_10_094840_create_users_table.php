@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->enum('user_type',[1,2,3,4,5])->default(3);
             $table->timestamp('last_login_at')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();

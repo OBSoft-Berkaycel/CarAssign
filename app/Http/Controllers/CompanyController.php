@@ -93,17 +93,17 @@ class CompanyController extends Controller
     public function delete(DeleteRequest $request)
     {
         try {
-            $this->companyRepository->create($request);
-            Log::info('Company record was created successfully!');
+            $this->companyRepository->delete($request);
+            Log::info('Company record was deleted successfully!');
             return response()->json([
                 "status" => true,
-                "message" => "Company record was created successfully!"
+                "message" => "Company record was deleted successfully!"
             ]);
         } catch (\Throwable $th) {
-            Log::error('There is an error occured at company create process! Error: '.$th->getMessage());
+            Log::error('There is an error occured at company delete process! Error: '.$th->getMessage());
             return response()->json([
                 "status" => false,
-                "message" => "There is an error occured at company create process!"
+                "message" => "There is an error occured at company delete process!"
             ],422);
         }
     }
