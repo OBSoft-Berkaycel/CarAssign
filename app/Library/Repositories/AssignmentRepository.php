@@ -1,8 +1,8 @@
 <?php
-namespace App\Http\Library\Repositories;
+namespace App\Library\Repositories;
 
-use App\Http\Library\Enums\AssignmentStatusses;
-use App\Http\Library\Repositories\Interfaces\AssignmentRepositoryInterface;
+use App\Library\Enums\AssignmentStatusses;
+use App\Library\Repositories\Interfaces\AssignmentRepositoryInterface;
 use App\Http\Requests\Assignment\CreateRequest;
 use App\Http\Requests\Assignment\DeleteRequest;
 use App\Http\Requests\Assignment\ListByIdRequest;

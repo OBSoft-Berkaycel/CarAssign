@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Library\Enums;
+namespace App\Library\Enums;
 
 enum StockStatusses: int
 {

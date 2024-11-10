@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Library\Repositories\Interfaces\CompanyRepositoryInterface;
+use App\Library\Repositories\Interfaces\CompanyRepositoryInterface;
 use App\Http\Requests\Company\CreateRequest;
 use App\Http\Requests\Company\DeleteRequest;
 use App\Http\Requests\Company\ListByIdRequest;

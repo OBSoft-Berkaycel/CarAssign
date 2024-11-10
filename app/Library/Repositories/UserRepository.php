@@ -1,7 +1,7 @@
 <?php
-namespace App\Http\Library\Repositories;
+namespace App\Library\Repositories;
 
-use App\Http\Library\Repositories\Interfaces\UserRepositoryInterface;
+use App\Library\Repositories\Interfaces\UserRepositoryInterface;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;

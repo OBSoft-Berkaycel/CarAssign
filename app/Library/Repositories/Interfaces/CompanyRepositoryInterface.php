@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Library\Repositories\Interfaces;
+namespace App\Library\Repositories\Interfaces;
 
 use App\Http\Requests\Company\CreateRequest;
 use App\Http\Requests\Company\DeleteRequest;

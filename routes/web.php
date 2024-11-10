@@ -44,11 +44,11 @@ $router->group(['prefix' => 'api/v1', 'middleware' => ['auth']], function () use
         $router->delete('delete', [AssignmentController::class, 'delete']);
     });
 
-    // $router->group(['prefix' => 'vehicles'], function() use ($router){
-    //     $router->get('listAll', [VehicleController::class, 'listAll']);
-    //     $router->get('getById/{vehicle_id}', [VehicleController::class, 'getVehicleById']);
-    //     $router->get('getVehiclesInStock', [VehicleController::class, 'getVehiclesInStock']);
-    //     $router->get('getByColor', [VehicleController::class, 'getVehiclesByColor']);
-    //     $router->get('getByHorsePower', [VehicleController::class, 'getVehiclesByHorsePower']);
-    // });
+    $router->group(['prefix' => 'vehicles'], function() use ($router){
+        $router->get('listAll', [VehicleController::class, 'listAll']);
+        $router->get('getById/{vehicle_id}', [VehicleController::class, 'getVehicleById']);
+        $router->get('getVehiclesInStock', [VehicleController::class, 'getVehiclesInStock']);
+        $router->get('getByColor', [VehicleController::class, 'getVehiclesByColor']);
+        $router->get('getByHorsePower', [VehicleController::class, 'getVehiclesByHorsePower']);
+    });
 });

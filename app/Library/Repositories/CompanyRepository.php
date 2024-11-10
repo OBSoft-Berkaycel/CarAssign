@@ -1,7 +1,7 @@
 <?php
-namespace App\Http\Library\Repositories;
+namespace App\Library\Repositories;
 
-use App\Http\Library\Repositories\Interfaces\CompanyRepositoryInterface;
+use App\Library\Repositories\Interfaces\CompanyRepositoryInterface;
 use App\Http\Requests\Company\CreateRequest;
 use App\Http\Requests\Company\DeleteRequest;
 use App\Models\Company;

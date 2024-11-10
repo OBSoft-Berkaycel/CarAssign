@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Library\Repositories\Interfaces;
+namespace App\Library\Repositories\Interfaces;
 
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Database\Eloquent\Collection;

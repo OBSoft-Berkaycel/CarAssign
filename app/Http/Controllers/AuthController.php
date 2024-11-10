@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Library\Repositories\Interfaces\UserRepositoryInterface;
+use App\Library\Repositories\Interfaces\UserRepositoryInterface;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use Tymon\JWTAuth\Facades\JWTAuth;

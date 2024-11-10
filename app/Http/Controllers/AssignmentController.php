@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Library\Repositories\Interfaces\AssignmentRepositoryInterface;
+use App\Library\Repositories\Interfaces\AssignmentRepositoryInterface;
 use App\Http\Requests\Assignment\CreateRequest;
 use App\Http\Requests\Assignment\DeleteRequest;
 use App\Http\Requests\Assignment\ListByIdRequest;
