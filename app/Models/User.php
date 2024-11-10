@@ -19,7 +19,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email',
+        'company_id', 'name', 'surname', 'username', 'email', 
+        'password', 'phone', 'profile_photo', 'address', 
+        'date_of_birth', 'is_active', 'last_login_at', 'created_by'
     ];
 
     /**
@@ -30,4 +32,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+
+    public function otps()
+    {
+        return $this->hasMany(Otp::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 }
