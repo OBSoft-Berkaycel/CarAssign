@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Library\Repositories\AssignmentRepository;
 use App\Library\Repositories\CompanyRepository;
+use App\Library\Repositories\CompanyVehiclesRepository;
 use App\Library\Repositories\Interfaces\AssignmentRepositoryInterface;
 use App\Library\Repositories\Interfaces\CompanyRepositoryInterface;
+use App\Library\Repositories\Interfaces\CompanyVehiclesRepositoryInterface;
 use App\Library\Repositories\Interfaces\UserRepositoryInterface;
 use App\Library\Repositories\Interfaces\VehicleRepositoryInterface;
 use App\Library\Repositories\UserRepository;
@@ -35,5 +37,6 @@ class RegisterServiceProvider extends ServiceProvider
         $this->app->bind(CompanyRepositoryInterface::class, CompanyRepository::class);
         $this->app->bind(AssignmentRepositoryInterface::class, AssignmentRepository::class);
         $this->app->bind(VehicleRepositoryInterface::class,VehicleRepository::class);
+        $this->app->bind(CompanyVehiclesRepositoryInterface::class, CompanyVehiclesRepository::class);
     }
 }

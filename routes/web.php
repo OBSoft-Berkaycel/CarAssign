@@ -2,9 +2,6 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
-use App\Http\Controllers\AssignmentController;
-use App\Http\Controllers\CompanyController;
-use App\Http\Controllers\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,5 +46,13 @@ $router->group(['prefix' => 'api/v1', 'middleware' => ['auth']], function () use
     $router->group(['prefix' => 'vehicles'], function() use ($router){
         $router->get('listAll', 'VehicleController@listAll');
         $router->get('getById', 'VehicleController@getVehicleById');
+    });
+
+     /**
+     * Company Vehicles Routes
+     */
+    $router->group(['prefix' => 'company-vehicles'], function() use ($router){
+        $router->get('listAll', 'CompanyVehicleController@listAll');
+        $router->get('getById', 'CompanyVehicleController@getVehicleById');
     });
 });
