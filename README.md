@@ -27,7 +27,7 @@ Bu proje, şirketlerin, kullanıcıların ve araçların yönetimini kolaylaşt�
 **Carassign'ı lokalinize klonlayın.**
 
 ```bash 
-  git clone https://github.com/OBSoft-Berkaycel/CarDebit.git
+  git clone ttps://github.com/OBSoft-Berkaycel/CarAssign.git
   cd CarDebit
 ```
 **Bağımlılıkları kurun.**
