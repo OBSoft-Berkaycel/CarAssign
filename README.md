@@ -1,26 +1,74 @@
-# Lumen PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/lumen-framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/lumen)](https://packagist.org/packages/laravel/lumen-framework)
+# CarAssign
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Bu proje, şirketlerin, kullanıcıların ve araçların yönetimini kolaylaştıran bir API tabanlı bir platformdur. Kullanıcı yönetimi, araç envanter kontrolü ve şirket bazlı raporlamalar gibi işlevleri ile kurumsal ihtiyaçları karşılamayı hedefler. Lumen framework'ü ile geliştirilmiş bu hızlı ve performans odaklı backend servisi, kurumsal yapılar için özelleştirilmiş çözümler sunmaktadır.
 
-> **Note:** In the years since releasing Lumen, PHP has made a variety of wonderful performance improvements. For this reason, along with the availability of [Laravel Octane](https://laravel.com/docs/octane), we no longer recommend that you begin new projects with Lumen. Instead, we recommend always beginning new projects with [Laravel](https://laravel.com).
 
-## Official Documentation
+## Özellikler
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+- **Şirket Yönetimi:** Şirket profillerinin listelenmesi, detaya inilebilmesi ve güncellenmesi.
+- **Araç Envanteri:** Araçların listelenmesi, stok durumu.
+- **Zimmet Yönetimi:** Araçların hangi şirketler altında kaç adet olduğu, hangi araçlar olduğu, şirket personellerine zimmet edilmiş araçların yönetimi.
+- **Yetki Kontrolü:** Kullanıcı türüne göre erişim yetkilendirmesi yapılır; yalnızca belirli yetkilere sahip kullanıcılar belirli işlemleri gerçekleştirebilir.
+- **Performans Odaklı:** Lumen’in hafif yapısı sayesinde yüksek performanslı bir API çözümü sunar.
 
-## Contributing
+  
+## Ortam Gereksinimleri
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- PHP 8.x veya üzeri
+- Composer
+- MySQL
+- Lumen 8.x veya üzeri
+- Postman veya benzeri bir API istemcisi (isteğe bağlı)
 
-## Security Vulnerabilities
+  
+## Kurulum 
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+**Carassign'ı lokalinize klonlayın.**
 
-## License
+```bash 
+  git clone https://github.com/OBSoft-Berkaycel/CarDebit.git
+  cd CarDebit
+```
+**Bağımlılıkları kurun.**
+```bash 
+  composer install
+```
+**Ortam Dosyasını Ayarlayın**
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+``.env.example`` dosyasını kopyalayarak ``.env`` dosyasını oluşturun ve veritabanı bilgilerinizi düzenleyin.
+```bash 
+  cp .env.example .env
+```
+
+**Uygulama Anahtarını Oluşturun**
+
+```bash 
+  php artisan key:generate
+```
+
+**Örnek Veritabanını Import Edin**
+
+Veritabanı yönetim konsolunuzdan ``lumenapp`` isimli bir MySQL veritabanı oluşturun. Ardından örnek verileri import edebilmek için ``extra/`` dizini altındaki sql dosyasını kullanabilirsiniz.
+
+**Sunucuyu Başlatın**
+
+```bash 
+  php -S localhost:8000 -t public
+```
+
+
+
+    
+## Ekstra
+
+- Örnek Postman collection, projenin root dizini altındaki ``extra`` dizini altındadır.
+
+- Bu proje, talep edilenin üzerine ekstra özellikler eklemek istenerek tasarlanmıştır. Bu bir demo projedir!
+
+## Hedefler
+
+- Otp doğrulama entegrasyonu
+- Araç takviye hizmeti(Filo'dan şirketlere araç transfer yönetimi)
+- Detaylı raporlama servisleri
+- Detaylı araç arama mekanizması(Filtering & Search)

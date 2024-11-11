@@ -77,6 +77,8 @@ $app->configure('jwt');
 
 $app->routeMiddleware([
     'auth' => Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+    'superadmin' => App\Http\Middleware\SuperAdminMiddleware::class,
+    'admin' => App\Http\Middleware\AdminMiddleware::class,
 ]);
 
 // $app->middleware([
