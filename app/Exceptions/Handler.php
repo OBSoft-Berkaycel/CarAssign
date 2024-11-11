@@ -8,6 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
 
 class Handler extends ExceptionHandler
 {
@@ -49,6 +50,29 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof HttpException) {
+            return response()->json([
+                'error' => 'HttpException',
+                'message' => $exception->getMessage(),
+                'status_code' => $exception->getStatusCode()
+            ], $exception->getStatusCode());
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return response()->json([
+                'error' => 'Unauthorized',
+                'message' => 'You are not authenticated.'
+            ], 401);
+        }
+
+        if ($exception instanceof ValidationException) {
+            $errors = $exception->validator->errors()->getMessages();
+            return response()->json([
+                'error' => 'Validation Error',
+                'message' => 'The given data was invalid.',
+                'errors' => $errors
+            ], 422);
+        }
         return parent::render($request, $exception);
     }
 }
