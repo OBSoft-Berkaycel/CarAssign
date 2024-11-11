@@ -24,7 +24,6 @@ class DeleteRequest extends FormRequest
     protected function rules(): array
     {
         return [
-            "user_id" => "required|integer|exists:users,id",
             "assignment_id" => "required|integer|exists:assignments,id",
         ];
     }
@@ -37,10 +36,6 @@ class DeleteRequest extends FormRequest
     protected function messages(): array
     {
         return [
-            'user_id.required' => 'The user ID is required.',
-            'user_id.integer' => 'The user ID must be an integer.',
-            'user_id.exists' => 'The specified user does not exist.',
-
             'assignment_id.required' => 'The assignment ID is required.',
             'assignment_id.integer' => 'The assignment ID must be an integer.',
             'assignment_id.exists' => 'The specified assignment does not exist.',

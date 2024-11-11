@@ -34,6 +34,7 @@ class AssignmentRepository implements AssignmentRepositoryInterface
     {
         DB::transaction(function() use ($request){
             $assignment = Assignment::find($request->get('assignment_id'));
+            $assignment->vehicle_id = $request->get('vehicle_id');
             $assignment->duration = $request->get('duration');
             $assignment->start_date = $request->get('start_date');
             $assignment->end_date = $request->get('end_date');
