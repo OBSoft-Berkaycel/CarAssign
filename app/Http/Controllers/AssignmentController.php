@@ -7,7 +7,9 @@ use App\Http\Requests\Assignment\CreateRequest;
 use App\Http\Requests\Assignment\DeleteRequest;
 use App\Http\Requests\Assignment\ListByIdRequest;
 use App\Http\Requests\Assignment\UpdateRequest;
+use App\Http\Requests\Assignment\VehicleAssignmentDetailsRequest;
 use App\Library\Services\Interfaces\AssignmentServiceInterface;
+use Exception;
 use Illuminate\Support\Facades\Log;
 
 class AssignmentController extends Controller
@@ -48,7 +50,65 @@ class AssignmentController extends Controller
     {
         try {
             $assignment = $this->assignmentService->getAssignmentDetailsById($request);
+            if(!$assignment)
+            {
+                throw new Exception("There is no assignment found!");
+            }
             Log::info("Assignment details were listed successfully!");
+            return response()->json([
+                "status" => true,
+                "data" => $assignment
+            ]);
+        } catch (\Throwable $th) {
+            Log::error('There is an error occured at listing assignment process! Error: '.$th->getMessage());
+            return response()->json([
+                "status" => false,
+                "message" => "There is an error occured at listing assignment process!"
+            ],422);
+        }
+    }
+
+    /**
+     * Get user assignments by user id.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listSelfAssignments()
+    {
+        try {
+            $assignments = $this->assignmentService->getSelfAssignments();
+            if(!$assignments)
+            {
+                throw new Exception("There is no assignment found for you!");
+            }
+            Log::info("Users assignment details were listed successfully!");
+            return response()->json([
+                "status" => true,
+                "data" => $assignments
+            ]);
+        } catch (\Throwable $th) {
+            Log::error('There is an error occured at listing assignment process! Error: '.$th->getMessage());
+            return response()->json([
+                "status" => false,
+                "message" => "There is an error occured at listing assignment process!"
+            ],422);
+        }
+    }
+
+    /**
+     * Get vehicle assignment details.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getVehicleAssignmentDetails(VehicleAssignmentDetailsRequest $request)
+    {
+        try {
+            $assignment = $this->assignmentService->getVehicleAssignmentDetails($request);
+            if(!$assignment)
+            {
+                throw new Exception("There is no assignment found for the incoming vehicle id!");
+            }
+            Log::info("Vehicle assignment details were listed successfully!");
             return response()->json([
                 "status" => true,
                 "data" => $assignment
