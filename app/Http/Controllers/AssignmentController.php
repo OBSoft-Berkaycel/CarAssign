@@ -7,12 +7,13 @@ use App\Http\Requests\Assignment\CreateRequest;
 use App\Http\Requests\Assignment\DeleteRequest;
 use App\Http\Requests\Assignment\ListByIdRequest;
 use App\Http\Requests\Assignment\UpdateRequest;
+use App\Library\Services\Interfaces\AssignmentServiceInterface;
 use Illuminate\Support\Facades\Log;
 
 class AssignmentController extends Controller
 {
 
-    public function __construct(private readonly AssignmentRepositoryInterface $assignmentRepository){}
+    public function __construct(private readonly AssignmentRepositoryInterface $assignmentRepository, private readonly AssignmentServiceInterface $assignmentService){}
 
     /**
      * List all assignments.
@@ -38,7 +39,7 @@ class AssignmentController extends Controller
     }
 
     /**
-     * Get assignment by ID.
+     * Get assignment details by assigment ID.
      *
      * @param ListByIdRequest
      * @return \Illuminate\Http\Response
@@ -46,8 +47,8 @@ class AssignmentController extends Controller
     public function getAssignmentById(ListByIdRequest $request)
     {
         try {
-            $assignment = $this->assignmentRepository->getById($request);
-            Log::info("Assignment datas were listed successfully!");
+            $assignment = $this->assignmentService->getAssignmentDetailsById($request);
+            Log::info("Assignment details were listed successfully!");
             return response()->json([
                 "status" => true,
                 "data" => $assignment

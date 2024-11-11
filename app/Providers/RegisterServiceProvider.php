@@ -12,6 +12,8 @@ use App\Library\Repositories\Interfaces\UserRepositoryInterface;
 use App\Library\Repositories\Interfaces\VehicleRepositoryInterface;
 use App\Library\Repositories\UserRepository;
 use App\Library\Repositories\VehicleRepository;
+use App\Library\Services\AssignmentService;
+use App\Library\Services\Interfaces\AssignmentServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RegisterServiceProvider extends ServiceProvider
@@ -33,10 +35,14 @@ class RegisterServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Repository Registrations
         $this->app->bind(UserRepositoryInterface::class,UserRepository::class);
         $this->app->bind(CompanyRepositoryInterface::class, CompanyRepository::class);
         $this->app->bind(AssignmentRepositoryInterface::class, AssignmentRepository::class);
         $this->app->bind(VehicleRepositoryInterface::class,VehicleRepository::class);
         $this->app->bind(CompanyVehiclesRepositoryInterface::class, CompanyVehiclesRepository::class);
+
+        // Service Registrations
+        $this->app->bind(AssignmentServiceInterface::class, AssignmentService::class);
     }
 }
