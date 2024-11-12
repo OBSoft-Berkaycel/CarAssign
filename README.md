@@ -28,7 +28,7 @@ Bu proje, şirketlerin, kullanıcıların ve araçların yönetimini kolaylaşt�
 
 ```bash 
   git clone ttps://github.com/OBSoft-Berkaycel/CarAssign.git
-  cd CarDebit
+  cd CarAssign
 ```
 **Bağımlılıkları kurun.**
 ```bash 
